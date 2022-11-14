@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="./css/style.css">
+  <title>Food Map</title>
+</head>
+
+<body>
+  <div class="top">
+    <div class="container">
+      <h1>FOOD MAP</h1>
+    </div>
+  </div>
+  <!-- ---------- login ------------- -->
+  <div class="login">
+    <div class="container">
+      <div class="loginForm">
+        <h2>ログイン</h2>
+        <div class="mailForm">
+          <label for="loginMail">メールアドレス:</label>
+          <input id="loginMail" type="email">
+        </div>
+        <div class="passForm">
+          <label for="loginPass">パスワード:</label>
+          <input id="loginPass" type="password">
+        </div>
+        <button id="loginBtn">ログイン</button>
+        <p class="error"></p>
+  
+      </div>
+  
+      <div class="signupLink">
+        <p>登録が済んでいない方はこちら</p>
+        <button id="signupLink">新規登録</button>
+      </div>
+    </div>
+  </div>
+  <!-- ---------- /login ------------- -->
+  
+  <!-- ---------- signup ------------- -->
+  <div class="signup">
+    <div class="container">
+      <div class="signupForm">
+        <h2>新規登録</h2>
+        <div class="signupName">
+          <label for="signupName">ユーザー名:</label>
+          <input id="signupName" type="text">
+        </div>
+        <div class="mailForm">
+          <label for="signupMail">メールアドレス:</label>
+          <input id="signupMail" type="email">
+        </div>
+        <div class="passForm">
+          <label for="signupPass">パスワード:</label>
+          <input id="signupPass" type="password">
+        </div>
+        <div class="passForm">
+          <label for="signupPass2">パスワード:</label>
+          <input id="signupPass2" type="password" placeholder="確認用">
+        </div>
+        <button id="signupBtn">新規登録</button>
+        <p class="error"></p>
+      </div>
+  
+      <div class="loginLink">
+        <button id="loginLink">ログイン画面に戻る</button>
+      </div>
+    </div>
+  </div>
+  <!-- ---------- /signup ------------- -->
+
+
+  <div id="map">
+    <!-- 地図を表示 -->
+  </div>
+
+  <header>
+    <div class="container">
+      <button class="mypage">マイページ</button>
+      <a href="#">TOPに戻る</a>
+    </div>
+  </header>
+
+  <div id="container">
+  <div id="home">
+    <div id="search">
+      <div class="searchForm">
+        <div class="address">
+          <label for="address">都道府県</label>
+          <select id="address" name="pref">
+            <option value="" selected>選択してください</option>
+            <option value="北海道">北海道</option>
+            <option value="青森県">青森県</option>
+            <option value="岩手県">岩手県</option>
+            <option value="宮城県">宮城県</option>
+            <option value="秋田県">秋田県</option>
+            <option value="山形県">山形県</option>
+            <option value="福島県">福島県</option>
+            <option value="茨城県">茨城県</option>
+            <option value="栃木県">栃木県</option>
+            <option value="群馬県">群馬県</option>
+            <option value="埼玉県">埼玉県</option>
+            <option value="千葉県">千葉県</option>
+            <option value="東京都">東京都</option>
+            <option value="神奈川県">神奈川県</option>
+            <option value="新潟県">新潟県</option>
+            <option value="富山県">富山県</option>
+            <option value="石川県">石川県</option>
+            <option value="福井県">福井県</option>
+            <option value="山梨県">山梨県</option>
+            <option value="長野県">長野県</option>
+            <option value="岐阜県">岐阜県</option>
+            <option value="静岡県">静岡県</option>
+            <option value="愛知県">愛知県</option>
+            <option value="三重県">三重県</option>
+            <option value="滋賀県">滋賀県</option>
+            <option value="京都府">京都府</option>
+            <option value="大阪府">大阪府</option>
+            <option value="兵庫県">兵庫県</option>
+            <option value="奈良県">奈良県</option>
+            <option value="和歌山県">和歌山県</option>
+            <option value="鳥取県">鳥取県</option>
+            <option value="島根県">島根県</option>
+            <option value="岡山県">岡山県</option>
+            <option value="広島県">広島県</option>
+            <option value="山口県">山口県</option>
+            <option value="徳島県">徳島県</option>
+            <option value="香川県">香川県</option>
+            <option value="愛媛県">愛媛県</option>
+            <option value="高知県">高知県</option>
+            <option value="福岡県">福岡県</option>
+            <option value="佐賀県">佐賀県</option>
+            <option value="長崎県">長崎県</option>
+            <option value="熊本県">熊本県</option>
+            <option value="大分県">大分県</option>
+            <option value="宮崎県">宮崎県</option>
+            <option value="鹿児島県">鹿児島県</option>
+            <option value="沖縄県">沖縄県</option>
+          </select>
+        </div>
+        <div class="nameAny">
+          <label for="form">店舗名</label>
+          <input id="form" type="text">
+        </div>
+        <div class="keyword">
+          <label for="keyword">フリーワード</label>
+          <input id="keyword" type="text">
+        </div>
+      </div>
+      <button id="submit">検索</button>
+    </div>
+    <div class="shops">
+      <!-- 検索結果を表示 -->
+    </div>
+  </div>
+
+  <div id="mypage">
+    
+  </div>
+  </div>
+
+  <div class="logout">
+    <button id="logout">ログアウト</button>
+  </div>
+
+
+  <!-- jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <!-- Map -->
+  <script
+    src='https://www.bing.com/api/maps/mapcontrol?key=Aqw95Elr8z2VpimhrL5hCw78LrR8i8Z8ucLxzSV0dWggPE_9O2mMAd7B1EfhYiy7'
+    async defer></script>
+
+    <!-- index.js -->
+    <script type="module" src="index.js"></script>
+</body>
+
+</html>

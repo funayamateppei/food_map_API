@@ -1,0 +1,358 @@
+#container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+* {
+  box-sizing: border-box;
+}
+/* ----------------------------- top ------------------------------- */
+.top {
+  display: flex;
+  align-items: center;
+  /* color: white; */
+  background-image: linear-gradient(90deg, rgba(247, 93, 139, 1), rgba(254, 220, 64, 1));
+  height: 250px;
+  overflow: hidden;
+}
+
+.top h1 {
+  text-align: center;
+}
+
+/* ----------------------------- login ------------------------------- */
+/* 最初の画面 */
+/* .login {
+  display: none;
+} */
+
+.loginForm {
+  margin: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid gray;
+  border-radius: 4px;
+}
+
+.loginForm h2 {
+  text-align: center;
+}
+
+.mailForm,
+.passForm {
+  margin: 20px;
+}
+
+.loginForm label {
+  display: inline-block;
+  text-align: right;
+  width: 120px;
+  margin-right: 10px;
+}
+
+.loginForm input {
+  width: 300px;
+  text-align: center;
+}
+
+.loginForm button {
+  margin: 20px;
+  width: 120px;
+  height: 30px;
+  background-color: #ffd61a;
+  box-shadow: 0 3px #ba9907;
+  border-radius: 3px;
+  border: none;
+  transition: .3s;
+}
+
+.loginForm button:hover {
+  opacity: .8;
+}
+
+.loginForm button:active {
+  box-shadow: none;
+  transform: translateY(3px);
+  transition: .3s;
+}
+
+.signupLink {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.loginError {
+  display: none;
+  text-align: center;
+  color: red;
+}
+
+/* ------------------------------------------------------------------- */
+
+/* ------------------------------------------------------------------- */
+.signup {
+  display: none;
+}
+
+.signupForm {
+  margin: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid gray;
+  border-radius: 4px;
+}
+
+.signupName {
+  margin: 20px;
+}
+
+.signupForm h2 {
+  text-align: center;
+}
+
+.signupForm label {
+  display: inline-block;
+  text-align: right;
+  width: 120px;
+  margin-right: 10px;
+}
+
+.signupForm input {
+  width: 300px;
+  text-align: center;
+}
+
+.signupForm button {
+  margin: 20px;
+  width: 120px;
+  height: 30px;
+  background-color: #ffd61a;
+  box-shadow: 0 3px #ba9907;
+  border-radius: 3px;
+  border: none;
+  transition: .3s;
+}
+
+.signupForm button:hover {
+  opacity: .8;
+}
+
+.signupForm button:active {
+  box-shadow: none;
+  transform: translateY(3px);
+  transition: .3s;
+}
+
+
+.loginLink {
+  display: flex;
+  justify-content: end;
+}
+/* ---------------------------------------------------------- */
+#map {
+  display: none;
+}
+
+
+#map {
+  width: 100%;
+  height: 300px;
+  /* z-index: 1; */
+}
+
+/* ---------------------------------------------------------- */
+header {
+  display: none;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 61px;
+  background-color: rgba(79, 143, 255, .8);
+}
+
+header .container {
+  display: flex;
+  justify-content: space-between;
+}
+
+header button {
+  background-color: transparent;
+  border: none;
+  line-height: 59px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: .3s;
+}
+
+header a {
+  color: black;
+  text-decoration: none;
+  display: inline-block;
+  background-color: transparent;
+  border: none;
+  line-height: 59px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: .3s;
+}
+
+header button:hover,
+header a:hover {
+  transition: .3s;
+  background-color: rgb(194, 211, 255);
+}
+
+/* ---------------------------------------------------------- */
+#home {
+  display: none;
+}
+
+#search {
+  display: flex;
+  align-items: flex-end;
+  padding: 30px;
+  border-bottom: 1px solid gray;
+}
+
+#search label {
+  width: 120px;
+}
+
+#search input,
+#search select {
+  width: 200px;
+  height: 30px;
+  text-align: center;
+}
+
+#search button {
+  width: 100px;
+  height: 30px;
+  margin-left: 30px;
+  background-color: rgb(235, 231, 231);
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0 3px gray;
+  transition: .3s
+}
+
+#search button:hover {
+  opacity: .8;
+}
+
+#search button:active {
+  box-shadow: none;
+  transform: translateY(3px);
+  transition: .3s
+}
+
+.item {
+  display: flex;
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0;
+  border-top: 1px solid gray;
+}
+
+.item img,
+.shops .sentence {
+  width: 50%;
+  height: 400px;
+}
+
+.item img {
+  object-fit: cover;
+}
+
+.sentence {
+  padding: 20px;
+}
+
+.sentence .name {
+  font-weight: bold;
+}
+
+.sentence li {
+  list-style: none;
+  font-size: 16px;
+}
+
+.sentence ul {
+  padding-left: 0;
+  margin: 5px;
+}
+
+.sentence p {
+  margin: 20px 0 !important;
+}
+
+.sentence a {
+  width: 150px;
+  height: 50px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.sentence img {
+  object-fit: cover;
+  width: 150px;
+  height: 50px;
+  border-radius: 4px;
+}
+
+.sentence button {
+  width: 140px;
+  height: 30px;
+  padding: 5px;
+  margin-left: 30px;
+  background-color: rgb(235, 231, 231);
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0 3px gray;
+  transition: .3s
+}
+
+.sentence button:hover {
+  opacity: .8;
+}
+
+.sentence button:active {
+  box-shadow: none;
+  transform: translateY(3px);
+  transition: .3s
+}
+
+.flex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex .btnBlock {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 50px 20px 20px 20px;
+}
+
+/* ---------------------------------------------------------- */
+#mypage {
+  display: none;
+}
+
+.logout {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
