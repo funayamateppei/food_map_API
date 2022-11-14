@@ -37,6 +37,7 @@ const db = getFirestore(app);
 let lat;
 let lng;
 
+// 新規登録の処理
 $('#signupBtn').on('click', () => {
   const username = $('#signupName').val();
   const email = $('#signupMail').val();
@@ -99,6 +100,9 @@ $('#loginBtn').on('click', () => {
       // ログイン成功時に起こる処理
       $('#loginMail').val('');
       $('#loginPass').val('');
+      $('#mypage').hide();
+      $('.mypage').fadeIn();
+      $('.back').hide();
       $('.login').hide();
       $('.top').hide();
       $('.logout').fadeIn();
@@ -160,25 +164,11 @@ $('#logout').on('click', () => {
 })
 
 
-// ------------------------- login ------------------------------
-$('.signupLink').on('click', () => {
-  $('.login').hide();
-  $('.signup').fadeIn();
-})
-
-// ------------------------- signup ------------------------------
-$('.loginLink').on('click', () => {
-  $('.signup').hide();
-  $('.login').fadeIn();
-})
 
 
 
 
-
-
-
-// Mapの関数
+// 初期のMapの表示
 const mapsInit = (position) => {
   // console.log(position);
   // console.log(position.coords.latitude);
@@ -222,8 +212,8 @@ window.onload = () => {
 
 
 
+// ホットペッパー API フォームの内容で店の情報を取得し、表示する
 let dataList = [];
-// ホットペッパー API フォームの内容で店の情報を取得
 $('#submit').on('click', () => {
   dataList = [];
   $.ajax({
@@ -259,6 +249,7 @@ $('#submit').on('click', () => {
           address: x.address,
           catch: x.catch,
           smoke: x.non_smoking,
+          img: x.photo.pc.l,
           url: x.urls.pc,
           lat: x.lat,
           lng: x.lng
@@ -287,12 +278,11 @@ $('#submit').on('click', () => {
                   <button class="mypageBtn mypageBtn${i}" value=${i}>マイページに追加</button>
                 </div>
               </div>
-
             </div>
           </div>
         `)
       });
-      $('.shops').html(htmlElements);
+      $('#home .shops').html(htmlElements);
     },
     error: function (error) {
       console.log(error);
@@ -300,7 +290,8 @@ $('#submit').on('click', () => {
   });
 })
 
-// クリック処理で位置情報を取得し、
+
+// クリック処理で位置情報を取得し、地図に表示する
 $('.shops').on('click', '.btn', (e) => {
   const mapsInit = () => {
     lat = dataList[e.target.value].lat;
@@ -341,6 +332,7 @@ $('.shops').on('click', '.btn', (e) => {
 
 
 
+// マイページに追加ボタンを押したときにFirebaseにデータを追加する
 let mypageArray = {
   data: []
 };
@@ -355,25 +347,107 @@ $('.shops').on('click', '.mypageBtn', (e) => {
       const docRef = doc(db, 'users', documentId);
       const docSnap = await getDoc(docRef);
       console.log(docSnap.data());
-      // for (let i = 0; i < docSnap.data().data.data.length; i++) {
-      //   mypageArray.data.push(docSnap.data().data[i])
-      //   // console.log('hoge')
-      // }
-      // console.log(mypageArray)
-    })
-  mypageArray.data.push(dataList[e.target.value]);
-  console.log(mypageArray);
-  getDocs(query((collection(db, 'users')), where('uid', '==', uid)))
-    .then(snapshot => {
-      snapshot.forEach(doc => {  
-        console.log(`${doc.id}`);
-        return documentId = doc.id;
-      })
+      if (docSnap.data().data) {
+        mypageArray.data = [];
+        for (let i = 0; i < docSnap.data().data.length; i++) {
+          mypageArray.data.push(docSnap.data().data[i])
+        }
+        console.log(mypageArray)
+      }
     })
     .then(() => {
-      console.log(mypageArray)
-      setDoc(doc(db, 'users', documentId),
-        { data: mypageArray.data }, { merge: true });
+      mypageArray.data.push(dataList[e.target.value]);
+      console.log(mypageArray);
+      getDocs(query((collection(db, 'users')), where('uid', '==', uid)))
+        .then(snapshot => {
+          snapshot.forEach(doc => {
+            console.log(`${doc.id}`);
+            return documentId = doc.id;
+          })
+        })
+        .then(() => {
+          console.log(mypageArray)
+          setDoc(doc(db, 'users', documentId),
+            { data: mypageArray.data }, { merge: true });
+        })
+  })
+})
+
+
+// マイページに移動したときの関数
+let mypageHtmlElements = [];
+$('.mypage').on('click', () => {
+  mypageHtmlElements = [];
+  $('#home').hide();
+  $('.mypage').hide();
+  $('.back').fadeIn();
+  $('#mypage').fadeIn();
+  getDocs(query((collection(db, 'users')), where('uid', '==', uid)))
+    .then(async snapshot => {
+      console.log(snapshot);
+      snapshot.forEach(doc => {
+        return documentId = doc.id;
+      })
+      const docRef = doc(db, 'users', documentId);
+      const docSnap = await getDoc(docRef);
+      console.log(docSnap.data());
+      docSnap.data().data.map((x, i) => {
+        mypageHtmlElements.push(`
+          <div class="item">
+            <img src="${x.img}">
+            <div class="sentence">
+              <ul>
+                <li class="name">店舗名</li>
+                <li>${x.name}</li>
+              </ul>
+              <ul>
+                <li class="name">アクセス</li>
+                <li>${x.address}</li>
+              </ul>
+              <p>${x.catch}</p>
+              <p>${x.smoke}</p>
+              <div class="flex">
+                <a href="${x.url}" target="_blank">
+                  <img src="./ダウンロード.png">
+                </a>
+                <div class="btnBlock">
+                  <button class="btn btn${i}" value=${i}>地図へ表示</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        `)
+      })
+      $('#mypage .shops').html(mypageHtmlElements);
     })
-}
-)
+})
+
+
+
+// HOMEに戻るボタンを押した後起きる関数
+$('.back').on('click', () => {
+  $('.back').hide();
+  $('.mypage').fadeIn();
+  $('#mypage').hide();
+  $('#home').fadeIn();
+})
+
+
+
+
+
+
+
+
+// ------------------------- login ------------------------------
+$('.signupLink').on('click', () => {
+  $('.login').hide();
+  $('.signup').fadeIn();
+})
+
+// ------------------------- signup ------------------------------
+$('.loginLink').on('click', () => {
+  $('.signup').hide();
+  $('.login').fadeIn();
+})
+
