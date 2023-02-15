@@ -217,7 +217,7 @@ $('#submit').on('click', () => {
   dataList = [];
   $.ajax({
     // APIのフロントエンド
-    url: 'http://webservice.recruit.co.jp/hotpepper/gourmet/v1/',
+    url: 'https://webservice.recruit.co.jp/hotpepper/gourmet/v1/',
     // JSONPを使う場合の指定
     dataType: 'jsonp',
     data: {
